@@ -1,0 +1,15 @@
+version: '2'
+services:
+    jhip_petclinic-app:
+        image: jhip_petclinic
+        environment:
+            - _JAVA_OPTIONS=-Xmx512m -Xms256m
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:sqlserver://jhip_petclinic-mssql:1433;database=jhip_petclinic
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    jhip_petclinic-mssql:
+        extends:
+            file: mssql.yml
+            service: jhip_petclinic-mssql
